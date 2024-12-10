@@ -7,7 +7,7 @@ stopCondition: 0
                    target p32 values (defined in stochastic family sections)
     */             
 
-nPoly: 1000
+nPoly: 1200
      /* Used when stopCondition = 0
            Total number of fractures you would like to have 
             in the domain you defined. The program will complete 
@@ -60,7 +60,7 @@ h: 0.1
 outputAcceptedRadiiPerFamily:1
 disableFram:0
 outputFinalRadiiPerFamily:1
-insertUserRectanglesFirst:0
+insertUserRectanglesFirst:1
 forceLargeFractures:0
 radiiListIncrease: 0.1
 removeFracturesLessThan: 0
@@ -93,7 +93,7 @@ seed: 0
     //Seed for random generator. 
         
 
-domainSizeIncrease: {0,0,0} 
+domainSizeIncrease: {2,2,2} 
           //temporary size increase for inserting fracture centers outside domain
           //increases the entire width by this ammount. So, {1,1,1} will increase
           //the domain by adding .5 to the +x, and subbtracting .5 to the -x, etc
@@ -137,10 +137,6 @@ rejectsPerFracture: 50  /*If fracture is rejected, it will be re-translated to a
                          (Set to 1 to ignore this feature)    */
 
 
- keepIsolatedFractures: 1 
-/*  0 - Remove any isolated fracture (not clusters)
-    1 - Keep all fractures in the domain
-*/
 
 
 
@@ -283,7 +279,188 @@ emax: {80}  // Maximum radius for each ellipse family.
                     
 ealpha: {2.2} // Alpha. Used in truncated power-law 
                         // distribution calculation
+
+
+
+
+
+/*==================================================================================*/
+/*==================================================================================*/
+/*                             Rctangular Fractures Options                         */
+/* NOTE: Number of elements must match number of rectangle families                 */
+/*       (second number in nShape parameter)                                        */
+/*==================================================================================*/
+/*==================================================================================*/
+
+//Number of rectangle families
+nFamRect: 0
+    //Having this option = 0 will ignore all rectangle family variables
+
+
+rLayer: {0}
+    /* Defines which domain the family belings to.
+     Layer 0 is the entire domain.
+     Layers numbered > 0 coorespond to layers defined above
+     1 corresponts to the first layer listed, 2 is the next layer listed, etc */
+
+
+/*rdist is a mandatory parameter if using statistically generated rectangles */
+rdistr: {2}   /*  Rectangle statistical distribution options:
+                        1 - lognormal distribution
+                        2 - truncated power law distribution 
+                        3 - exponential distribution
+                        4 - constant */
+
+rbetaDistribution: {1,1}   /* Beta is the rotation/twist about the z axis
+                    with the polygon centered on x-y plane at the orgin 
+                    before rotation into 3d space
+                    
+                    0 - uniform distribution [0, 2PI]    
+                    1 - constant angle (specefied below by "rbeta")
+                    
+                */                                                 
+                
+r_p32Targets: {.1,.1} 
+/* Rectangle families target fracture intensity per family.
+When using stopCondition = 1 (defined at the top of the input file), families will 
+be inserted untill the families desired fracture intensity has been reached. 
+Once all families desired fracture intensity has been met, fracture generation will 
+be complete.
+*/      
+                 
+//============================================================================ 
+// Parameters used by all stochastic rectangle families 
+// Mandatory Parameters if using statistically generated rectangles   
+
+raspect: {1,1}  /* Aspect ratio */
+ 
+rAngleOption: 0     /* All angles for rectangles: 
+                       0 - degrees
+                       1 - radians (must be numerical value, cannot use "Pi") */
+ 
+rtheta: {-45,45} /*Rectangle fracture orientation.
+                          The angle the normal vector makes with the z-axis */
+
+rphi: {0,45} /* Rectangle fracture orientation.
+                The angle the projection of the normal onto the x-y
+                plane makes with the x-axis */
+      
+rbeta: {0,0}   /* rotation around the normal vector */
+
+rkappa: {8,8}  /*Parameter for the fisher distributions. The bigger, 
+                              the more similar (less diverging) are the rectangle 
+                              familiy's normal vectors  */
+
+//=============================================================================
+// Options Specific For Rectangle Lognormal Distribution (rdistr=1):
+// Mandatory Parameters if using rectangles with lognormal distribution 
+
+rLogMean: {1.6}   /*For Lognormal Distribution. 
+                    Mean radius (1/2 rectangle length) in 
+                    lognormal distribution for rectangles. */
+                   
+
+rLogMax: {100}
+rLogMin: {1}
+
+rsd: {.4}     /* Standard deviation for lognormal distributions of 
+                      rectangles */
+
+//=============================================================================
+// Options Specific For Rectangle Truncated Power-Law Distribution (rdistr=2): 
+// Mandatory Parameters if using rectangles with power-law distribution 
+
+ rmin: {1,1}         /* Minimum radius for each rectangle family. 
+                                 For power law distributions. */
+
+ rmax: {6,5}   /* Maximum radius for each rectangle family.
+                          For power law distributions. */
+
+ ralpha: {2.4,2.5}   // Alpha. Used in truncated power-law 
+                     // distribution calculation
+
+
+/*===========================================================================*/
+/* Options Specific For Rectangle Exponential Distribution (edistr=3):       */
+/* Mandatory Parameters if using rectangules with exponential distribution   */
+
+rExpMean: {2}  //Mean value for Exponential  Distribution
+rExpMax: {100}
+rExpMin: {1}
+
+/*===========================================================================*/
+/* Options Specific For Constant Size of rectangles (edistr=4):              */
+
+rconst: {4,4}  // Constant radius, defined per rectangular family       
                
+/*===========================================================================*/
+/*===========================================================================*/
+/* User-Specified Ellipses                                                   */
+/* Mandatory Parameters if using user-ellipses                               */
+/* NOTE: Number of elements must match number of user-ellipse families       */
+/*(third number in nShape parameter)                                         */
+/*===========================================================================*/
+/* NOTE: Only one user-ellipse is placed into the domain per defined 
+         user-ellipse, with possibility of being rejected  */
+
+   
+userEllipsesOnOff: 0    //0 - User Ellipses off
+                        //1 - User Ellipses on
+
+UserEll_Input_File_Path: /dfnWorks/examples/DFNWORKS_Example/define_4_user_ellipses.dat 
+
+/*===========================================================================*/
+/*===========================================================================*/
+/*  User-Specified Ellipses                                                  */
+/*  Mandatory Parameters if using user-ellipses                              */
+/*  NOTE: Number of elements must match number of user-ellipse families.     */
+/*  NOTE: Only one user-ellipse is placed into the domain per defined        */
+/*        user-ellipse, with possibility of being rejected                   */
+/*===========================================================================*/
+/*===========================================================================*/
+
+userEllByCoord: 0
+/*  0 - User ellipses defined by coordinates off
+    1 - User ellipses defined by coordinates on
+*/
+
+EllByCoord_Input_File_Path: /home/jharrod/GitProjects/DFNGen/DFNC++Version/inputFiles/userPolygons/ellCoords.dat
+
+
+
+/*===========================================================================*/
+/* User-Specified Rectangles                                                 */
+/* Mandatory Parameters if using user-rectangles                             */
+/* NOTE: Number of elements must match number of user-ellipse families       */
+/* (fourth number in nShape parameter)                                       */
+/*===========================================================================*/
+/* NOTE: Only one user-rectangle is placed into the domain per defined 
+         user-rectangle, with possibility of being rejected  */
+         
+
+userRectanglesOnOff: 0    //0 - User Rectangles off
+                        //1 - User Rectangles on
+                          
+UserRect_Input_File_Path: /home/ergiamb/software/dfnWorks-Version2.0/sample_inputs/4_fracture_test/4_fracture_rects.dat 
+
+/*===========================================================================*/
+/* If you would like to input user specified rectangles according to their
+  coordinates, you can use the parameter userDefCoordRec. In that case, all        
+  of the user specified rectangles will have to be according to coordinates.
+*/
+
+userRecByCoord: 0
+//  0 - user defined rectangles not used
+//  1 - user defined rectangles used and defined by input file:
+
+RectByCoord_Input_File_Path: ./inputFiles/userPolygons/rectCoords.dat
+
+
+/*WARNING: userDefCoordRec can cause LaGriT errors because the polygon 
+vertices are not put in clockwise or counter-clockwise order.
+If errors (Usualy seg fualt during meshing if using LaGriT), 
+try to reorder the points till u get it right.
+Also, coordinates must be co-planar */
 
 /*===========================================================================*/
 // Aperture [m]
@@ -341,3 +518,30 @@ constantPermeability: 1e-12  //Constant permeability for all fractures
 
 //=============================================================================
 
+
+ keepIsolatedFractures: 1 
+/*  0 - Remove any isolated fracture (not clusters)
+    1 - Keep all fractures in the domain
+*/
+
+
+/*===========================================================================*/
+/*===========================================================================*/
+/*                                                                           */
+/*  User Polygon Defined By Coordinates                                   */
+/*                                                                           */
+/*===========================================================================*/
+/*===========================================================================*/
+
+userPolygonByCoord: 0
+/*  0 - User defined polygon by coordinates off
+    1 - User defined polygon by coordinates on
+*/
+
+PolygonByCoord_Input_File_Path: ./
+
+/*WARNING: userDefCoordRec can cause LaGriT errors because the polygon 
+vertices are not put in clockwise or counter-clockwise order.
+If errors (Usualy seg fualt during meshing if using LaGriT), 
+try to reorder the points till u get it right.
+Also, coordinates must be co-planar */
