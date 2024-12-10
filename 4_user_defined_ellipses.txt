@@ -1,0 +1,3 @@
+dfnGen /dfnWorks/examples/Chuanyin_mod1/gen_4_user_ellipses.dat
+none/none
+none/none
