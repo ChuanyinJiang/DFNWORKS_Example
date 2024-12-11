@@ -173,7 +173,7 @@ famProb: {.0625, .9375}
 /*===========================================================================*/
 
 //Number of ellipse families
-nFamEll: 2
+nFamEll: 0
     //Having this option = 0 will ignore all rectangle family variables
 
 eLayer: {0,0}
@@ -293,11 +293,11 @@ ealpha: {2.2} // Alpha. Used in truncated power-law
 /*==================================================================================*/
 
 //Number of rectangle families
-nFamRect: 0
+nFamRect: 2
     //Having this option = 0 will ignore all rectangle family variables
 
 
-rLayer: {0}
+rLayer: {0, 0}
     /* Defines which domain the family belings to.
      Layer 0 is the entire domain.
      Layers numbered > 0 coorespond to layers defined above
@@ -305,7 +305,7 @@ rLayer: {0}
 
 
 /*rdist is a mandatory parameter if using statistically generated rectangles */
-rdistr: {2}   /*  Rectangle statistical distribution options:
+rdistr: {4,4}   /*  Rectangle statistical distribution options:
                         1 - lognormal distribution
                         2 - truncated power law distribution 
                         3 - exponential distribution
@@ -320,7 +320,7 @@ rbetaDistribution: {1,1}   /* Beta is the rotation/twist about the z axis
                     
                 */                                                 
                 
-r_p32Targets: {.1,.1} 
+r_p32Targets: {1,1} 
 /* Rectangle families target fracture intensity per family.
 When using stopCondition = 1 (defined at the top of the input file), families will 
 be inserted untill the families desired fracture intensity has been reached. 
@@ -338,16 +338,16 @@ rAngleOption: 0     /* All angles for rectangles:
                        0 - degrees
                        1 - radians (must be numerical value, cannot use "Pi") */
  
-rtheta: {-45,45} /*Rectangle fracture orientation.
+rtheta: {0,0} /*Rectangle fracture orientation.
                           The angle the normal vector makes with the z-axis */
 
-rphi: {0,45} /* Rectangle fracture orientation.
+rphi: {45,45} /* Rectangle fracture orientation.
                 The angle the projection of the normal onto the x-y
                 plane makes with the x-axis */
       
 rbeta: {0,0}   /* rotation around the normal vector */
 
-rkappa: {8,8}  /*Parameter for the fisher distributions. The bigger, 
+rkappa: {1,1}  /*Parameter for the fisher distributions. The bigger, 
                               the more similar (less diverging) are the rectangle 
                               familiy's normal vectors  */
 
@@ -391,7 +391,7 @@ rExpMin: {1}
 /*===========================================================================*/
 /* Options Specific For Constant Size of rectangles (edistr=4):              */
 
-rconst: {4,4}  // Constant radius, defined per rectangular family       
+rconst: {4,0.5}  // Constant radius, defined per rectangular family       
                
 /*===========================================================================*/
 /*===========================================================================*/
