@@ -146,7 +146,7 @@ rejectsPerFracture: 100000  /*If fracture is rejected, it will be re-translated 
 
 //user rectangles and user Ellipses defined in their cooresponding files
 
-famProb: {0.2 0.8} 
+famProb: {.2, .8} 
 /* Probability of occurrence of each family of randomly distrubuted rectangles
    and ellipses.
    User-ellipses and user-rectangles insertion will be attempted with 100% 
