@@ -302,7 +302,7 @@ rLayer: {0, 0}
      Layer 0 is the entire domain.
      Layers numbered > 0 coorespond to layers defined above
      1 corresponts to the first layer listed, 2 is the next layer listed, etc */
-
+rRegion: {0,0} 
 
 /*rdist is a mandatory parameter if using statistically generated rectangles */
 rdistr: {4,4}   /*  Rectangle statistical distribution options:
@@ -334,9 +334,9 @@ be complete.
 
 raspect: {1,1}  /* Aspect ratio */
  
-rAngleOption: 0     /* All angles for rectangles: 
-                       0 - degrees
-                       1 - radians (must be numerical value, cannot use "Pi") */
+rAngleOption: 1     /* All angles for rectangles: 
+                       1 - degrees
+                       0 - radians (must be numerical value, cannot use "Pi") */
  
 rtheta: {0,0} /*Rectangle fracture orientation.
                           The angle the normal vector makes with the z-axis */
