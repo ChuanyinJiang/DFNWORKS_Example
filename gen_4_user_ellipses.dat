@@ -32,8 +32,7 @@ domainSize: {10,10,10}
 numOfLayers: 0    //number of layers
 
 layers: 
-{-5,0}
-{0,5}
+{-5,5}
 
 
 /*  Layers need to be listed line by line
