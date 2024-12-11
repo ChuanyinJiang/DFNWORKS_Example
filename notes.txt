@@ -1,1 +1,2 @@
+docker run -ti -v LOCAL_FOLDER:/dfnWorks/work ees16/dfnworks:v2.5.3
 python run_flow.py -name /dfnWorks/work/DFNWORKS_Example -input 4_user_defined_ellipses.txt -ncpu 32
