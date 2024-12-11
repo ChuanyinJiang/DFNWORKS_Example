@@ -130,7 +130,7 @@ boundaryFaces: {1,1,1,1,1,1}
 */
                           
 
-rejectsPerFracture: 50  /*If fracture is rejected, it will be re-translated to a new
+rejectsPerFracture: 100000  /*If fracture is rejected, it will be re-translated to a new
                          position this number of times. 
                          
                          This helps hit distribution targets for stochastic families 
