@@ -214,7 +214,7 @@ be complete.
 easpect: {1,1}  /* Aspect ratio. Used for lognormal and truncated 
                     power law distribution. */
 
-enumPoints: {5,4} /*Number of vertices used in creating each elliptical 
+enumPoints: {5,5} /*Number of vertices used in creating each elliptical 
                            fracture family. Number of elements must match number 
                            of ellipse families (first number in nShape) */
 
