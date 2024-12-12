@@ -7,7 +7,7 @@ stopCondition: 0
                    target p32 values (defined in stochastic family sections)
     */             
 
-nPoly: 1000
+nPoly: 300
      /* Used when stopCondition = 0
            Total number of fractures you would like to have 
             in the domain you defined. The program will complete 
@@ -32,15 +32,16 @@ domainSize: {10,10,10}
 numOfLayers: 0    //number of layers
 
 layers: 
-{-5,5}
+{-5,0}
+{0,5}
 
 
 /*  Layers need to be listed line by line
     Format: {minZ, maxZ}
     
     The first layer listed is layer 1, the second is layer 2, etc
-    Stochastic families can be assigned to these layers (see stochastic
-    shape family section) 
+    Stochastic families can be assigned to theses layers (see stochastic
+    shape familiy section) 
 */   
 
 numOfRegions: 1
@@ -145,7 +146,7 @@ rejectsPerFracture: 100000  /*If fracture is rejected, it will be re-translated 
 
 //user rectangles and user Ellipses defined in their cooresponding files
 
-famProb: {.2, .8} 
+famProb: {1} 
 /* Probability of occurrence of each family of randomly distrubuted rectangles
    and ellipses.
    User-ellipses and user-rectangles insertion will be attempted with 100% 
@@ -172,33 +173,33 @@ famProb: {.2, .8}
 /*===========================================================================*/
 
 //Number of ellipse families
-nFamEll: 2
+nFamEll: 1
     //Having this option = 0 will ignore all rectangle family variables
 
-eLayer: {0,0}
+eLayer: {0}
     /* Defines which domain the family belings to.
      Layer 0 is the entire domain.
      Layers numbered > 0 coorespond to layers defined above
      1 corresponts to the first layer listed, 2 is the next layer listed, etc */
      
-eRegion: {0,0}
+eRegion: {0}
 
 //edist is a mandatory parameter if using statistically generated ellipses 
-edistr: {4,4}   /* Ellipse statistical distribution options:
+edistr: {4}   /* Ellipse statistical distribution options:
                       1 - lognormal distribution
                       2 - truncated power law distribution   
                       3 - exponential distribution
                       4 - constant */
                                                                                        
                       
-ebetaDistribution: {1,1}   /* Beta is the rotation around the polygon's normal
+ebetaDistribution: {1}   /* Beta is the rotation around the polygon's normal
                     vector, with the polygon centered on x-y plane at the orgin 
                     
                     0 - uniform distribution [0, 2PI]    
                     1 - constant angle (specefied below by "ebeta")    */                
     
     
-e_p32Targets: {1,1} 
+e_p32Targets: {1} 
 /* Elliptical families target fracture intensity per family.
 When using stopCondition = 1 (defined at the top of the input file), families will 
 be inserted until the families desired fracture intensity has been reached. 
@@ -210,10 +211,10 @@ be complete.
 // Parameters used by all stochastic ellipse families 
 // Mandatory Parameters if using statistically generated ellipses  
 
-easpect: {1,1}  /* Aspect ratio. Used for lognormal and truncated 
+easpect: {1}  /* Aspect ratio. Used for lognormal and truncated 
                     power law distribution. */
 
-enumPoints: {10,5} /*Number of vertices used in creating each elliptical 
+enumPoints: {10} /*Number of vertices used in creating each elliptical 
                            fracture family. Number of elements must match number 
                            of ellipse families (first number in nShape) */
 
@@ -221,17 +222,17 @@ eAngleOption: 1     /* All angles for ellipses:
                        0 - radians (Must use numerical value for PI)
                        1 - degrees  */
                         
-etheta: {0,0} /*Ellipse fracture orientation.
+etheta: {0} /*Ellipse fracture orientation.
                      The angle the normal vector makes with the z-axis */
 
-ephi: {45,45}   /* Ellipse fracture orientation.
+ephi: {45}   /* Ellipse fracture orientation.
                     The angle the projection of the normal onto the x-y plane
                     makes with the x-axis */
 
-ebeta: {0,0}   /* rotation around the normal vector */
+ebeta: {0}   /* rotation around the normal vector */
 
 
-ekappa: {1,1}  /*Parameter for the fisher distribnShaprutions. The bigger, the more 
+ekappa: {1}  /*Parameter for the fisher distribnShaprutions. The bigger, the more 
                         similar (less diverging) are the elliptical familiy's
                         normal vectors */                
 
@@ -261,7 +262,7 @@ eExpMin: {2}  //Mean value for Exponential  Distribution
 //===========================================================================
 //    Options Specific For Constant Size of ellipses (edistr=4):
 
-econst: {2,0.5}  // Constant radius, defined per family     
+econst: {2}  // Constant radius, defined per family     
                
 //===========================================================================
 // Options Specific For Ellipse Truncated Power-Law Distribution (edistr=2)
